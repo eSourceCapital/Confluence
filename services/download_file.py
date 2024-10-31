@@ -137,6 +137,10 @@ def export_pdf_confluence_page_by_id(
         print(f"{file_page_title} is an empty page.")
         return 'EMPTY_PAGE'
 
+    #Wait time cannot be 0
+    if not wait_time or wait_time == 0:
+        wait_time = 15
+        
     #Try 3 times
     for attempt in range(3):
         #Generate the presigned download URL
