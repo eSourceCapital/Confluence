@@ -166,7 +166,7 @@ def export_pdf_confluence_page_by_id(
             return 'DOWNLOAD_SUCCESFUL'
         else:
             wait_time += 10 #Increase wait between url and download
-            print(f"Attempt {attempt + 1} failed with status code {status_code}. Retrying in 10 seconds...")
+            print(f"Attempt {attempt + 1} failed with status code {status_code}. Retrying in {wait_time} seconds...")
             time.sleep(10)
             
     return 'DOWNLOAD_FAILED'
