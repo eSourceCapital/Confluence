@@ -164,7 +164,8 @@ def export_pdf_confluence_page_by_id(
             #Make sure output_path ends in /
             output_path = output_path + "/" if not output_path.endswith("/") else output_path
         
-            status_code = download_pdf_from_presigned_url(url=url, output_path=f"{output_path}{file_page_title}")  
+            download_url = download_pdf_from_presigned_url(url=url, output_path=f"{output_path}{file_page_title}")  
+            status_code = download_url['statusCode']
         
         if status_code == 200:
             return 'DOWNLOAD_SUCCESFUL'
