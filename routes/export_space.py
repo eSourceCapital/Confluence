@@ -39,6 +39,7 @@ async def export_pdf_confluence_space_to_gcs_bucket_by_key():
         api_token = os.getenv('API_TOKEN')
         space_key = os.getenv('SPACE_KEY')
         gcs_bucket_name = os.getenv('GCS_BUCKET_NAME')
+        wait_time = int(os.getenv('WAIT_TIME_BEFORE_DOWNLOAD'))
         print(f"Succesfully loaded environment variables: domain = {domain}, email = {email}, api_token is secret, space_key = {space_key} and gcs_bucket_name = {gcs_bucket_name}")
         
     except:
@@ -80,7 +81,8 @@ async def export_pdf_confluence_space_to_gcs_bucket_by_key():
                 page_id=page_id, 
                 page_title=page_title,
                 output_path=None, 
-                gcs_bucket_name=gcs_bucket_name)
+                gcs_bucket_name=gcs_bucket_name,
+                wait_time=wait_time)
             
             if page_status not in pages_status:
                 pages_status[page_status] = [page_id]

@@ -10,6 +10,6 @@ async def delete_files_in_bucket(bucket_name):
 
         for blob in blobs:
             blob.delete()  # Eliminar archivo
-            print(f'Archivo {blob.name} eliminado del bucket.')
+            print(f'File {blob.name} deleted from bucket {bucket_name}.')
     except Exception as e:
-        return {"status":-1 , "msg":"Desconocido", "data":e}
+        return {"status":-1 , "msg":"Unknown", "data":e}

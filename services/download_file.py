@@ -38,7 +38,6 @@ def download_pdf_from_presigned_url(url, output_path):
         print(f"File downloaded successfully and saved as {filename}")  
     else:
         print(f"Failed to download {filename}. Status code: {response.status_code}")
-        return {"error": f"Request failed with status {response.status_code}", "details": response.text}
     
     return {"statusCode": response.status_code}    
 
@@ -84,10 +83,8 @@ def download_pdf_from_presigned_url_to_gcs_bucket(url, filename, gcs_bucket_name
     
     else:
         print(f"Failed to download {filename}. Status code: {response.status_code}")
-        return {"error": f"Request failed with status {response.status_code}", "details": response.text}
     
     return {"statusCode": response.status_code}
-
       
 def convert_title_to_filename(title):
     """
@@ -109,7 +106,8 @@ def export_pdf_confluence_page_by_id(
     page_id, 
     page_title=None, 
     output_path=None, 
-    gcs_bucket_name=None):
+    gcs_bucket_name=None,
+    wait_time=15):
     
     """
     Exports a page as a PDF from the Confluence API.
@@ -140,7 +138,6 @@ def export_pdf_confluence_page_by_id(
         return 'EMPTY_PAGE'
 
     #Try 3 times
-    wait_time = 20
     for attempt in range(3):
         #Generate the presigned download URL
         url = get_pdf_export_confluence_url(domain, email, api_token, page_id)
