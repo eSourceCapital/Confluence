@@ -40,7 +40,7 @@ async def export_pdf_confluence_space_to_gcs_bucket_by_key():
         space_key = os.getenv('SPACE_KEY')
         gcs_bucket_name = os.getenv('GCS_BUCKET_NAME')
         wait_time = int(os.getenv('WAIT_TIME_BEFORE_DOWNLOAD'))
-        print(f"Succesfully loaded environment variables: domain = {domain}, email = {email}, api_token is secret, space_key = {space_key} and gcs_bucket_name = {gcs_bucket_name}")
+        print(f"Succesfully loaded environment variables: domain = {domain}, email = {email}, api_token is secret, space_key = {space_key}, gcs_bucket_name = {gcs_bucket_name} and wait_time (before downloading file from URL) = {wait_time}")
         
     except:
         return {"status":-1 , "msg":"Could not load environment variables", "data":str(e)}
